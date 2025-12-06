@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umuzi Onboarding Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .onboarding-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+        
+        .onboarding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .phase-active {
+            border-left: 4px solid #667eea;
+            background-color: #f0f4ff;
+        }
+        
+        .task-complete {
+            background-color: #f0fff4;
+            border-color: #38a169;
+        }
+        
+        .ai-chat-bubble {
+            max-width: 80%;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .user-chat-bubble {
+            max-width: 80%;
+            border-radius: 18px;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="gradient-bg text-white shadow-lg">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-purple-700 font-bold text-xl">U</span>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold">Umuzi Onboarding Portal</h1>
+                            <p class="text-purple-200">Smooth onboarding for all contributors</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="hidden md:block">
+                            <div class="text-sm">Welcome back,</div>
+                            <div class="font-semibold" id="user-name">Alex Morgan</div>
+                        </div>
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-purple-700 font-bold">
+                            AM
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Role Selector -->
+            <div class="mb-10">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Select Your Contributor Type</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div id="full-time-card" class="onboarding-card bg-white p-6 rounded-xl shadow-md border-2 border-blue-200 cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="badge bg-blue-100 text-blue-800">Full-Time Staff</span>
+                                    <span class="text-sm text-gray-500">30-60-90 day journey</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-800">Full Immersion Onboarding</h3>
+                                <p class="text-gray-600 mt-2">Complete integration into Umuzi culture, teams, and processes with structured 4-phase approach.</p>
+                            </div>
+                            <i class="fas fa-users text-blue-500 text-2xl"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-medium text-gray-700 mb-2">Includes:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Buddy system & social integration</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Cultural immersion & values training</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Comprehensive benefits & policies overview</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>30-60-90 day progression plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div id="contractor-card" class="onboarding-card bg-white p-6 rounded-xl shadow-md border-2 border-green-200 cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="badge bg-green-100 text-green-800">Contractor</span>
+                                    <span class="text-sm text-gray-500">Focused & efficient</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-800">Streamlined Onboarding</h3>
+                                <p class="text-gray-600 mt-2">Project-focused access with essential information for immediate contribution.</p>
+                            </div>
+                            <i class="fas fa-briefcase text-green-500 text-2xl"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-medium text-gray-700 mb-2">Includes:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Project-specific access & resources</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Direct contact with project manager</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Essential tools training only</li>
+                                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Clear deliverable milestones</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onboarding Dashboard (Initially Hidden) -->
+            <div id="onboarding-dashboard" class="hidden">
+                <!-- Progress Overview -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800" id="dashboard-title">Onboarding Dashboard</h2>
+                            <p class="text-gray-600" id="dashboard-subtitle"></p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500">Onboarding Progress</div>
+                            <div class="text-2xl font-bold text-blue-600" id="progress-percent">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2 flex justify-between text-sm text-gray-600">
+                        <span>Phase Progress</span>
+                        <span id="completed-tasks">0/0 tasks</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 mb-8">
+                        <div id="progress-bar" class="progress-bar h-3 rounded-full bg-blue-600" style="width: 0%"></div>
+                    </div>
+                    
+                    <!-- Phase Indicators -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="phase phase-1 text-center p-3 rounded-lg border">
+                            <div class="w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-2 font-bold">1</div>
+                            <h4 class="font-medium text-gray-800">Pre-boarding</h4>
+                            <p class="text-xs text-gray-500 mt-1" id="phase-1-desc"></p>
+                        </div>
+                        
+                        <div class="phase phase-2 text-center p-3 rounded-lg border">
+                            <div class="w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-2 font-bold">2</div>
+                            <h4 class="font-medium text-gray-800">Foundations</h4>
+                            <p class="text-xs text-gray-500 mt-1" id="phase-2-desc"></p>
+                        </div>
+                        
+                        <div class="phase phase-3 text-center p-3 rounded-lg border">
+                            <div class="w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-2 font-bold">3</div>
+                            <h4 class="font-medium text-gray-800">Immersion</h4>
+                            <p class="text-xs text-gray-500 mt-1" id="phase-3-desc"></p>
+                        </div>
+                        
+                        <div class="phase phase-4 text-center p-3 rounded-lg border">
+                            <div class="w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-2 font-bold">4</div>
+                            <h4 class="font-medium text-gray-800">Contribution</h4>
+                            <p class="text-xs text-gray-500 mt-1" id="phase-4-desc"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks & Gamification -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Task List -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-gray-800">Your Onboarding Tasks</h3>
+                                <div class="flex space-x-2">
+                                    <span class="badge bg-blue-100 text-blue-800" id="current-phase-badge">Phase 1</span>
+                                    <span class="badge bg-purple-100 text-purple-800" id="gamification-badge">0 pts</span>
+                                </div>
+                            </div>
+                            
+                            <div id="tasks-container">
+                                <!-- Tasks will be dynamically inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- AI Assistant -->
+                        <div class="bg-white rounded-xl shadow-md p-6 mt-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white mr-3">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800">Umuzi AI Assistant</h3>
+                                    <p class="text-sm text-gray-600">Ask me anything about your onboarding!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-container">
+                                <div class="ai-chat-bubble bg-white p-3 mb-3 shadow-sm">
+                                    <p class="text-gray-800">Hello! I'm your onboarding assistant. I can help answer questions about Umuzi, your role, or the onboarding process. What would you like to know?</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-2">
+                                <input type="text" id="chat-input" placeholder="Type your question here..." class="flex-grow border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button id="send-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resources & Connections -->
+                    <div>
+                        <!-- Resources -->
+                        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Essential Resources</h3>
+                            <div class="space-y-4" id="resources-container">
+                                <!-- Resources will be dynamically inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Key Connections -->
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Your Key Connections</h3>
+                            <div class="space-y-4" id="connections-container">
+                                <!-- Connections will be dynamically inserted here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Gamification Panel -->
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-md p-6 mt-8 text-white">
+                            <h3 class="text-lg font-bold mb-2">Onboarding Quests</h3>
+                            <p class="text-blue-100 mb-4">Complete tasks to earn badges and points!</p>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white bg-opacity-20 p-3 rounded-lg">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <div class="font-medium">Connection Explorer</div>
+                                            <div class="text-sm text-blue-100">Meet 5 team members</div>
+                                        </div>
+                                        <div class="badge bg-white text-blue-700" id="connection-badge">0/5</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white bg-opacity-20 p-3 rounded-lg">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <div class="font-medium">Knowledge Collector</div>
+                                            <div class="text-sm text-blue-100">Complete all training modules</div>
+                                        </div>
+                                        <div class="badge bg-white text-blue-700" id="knowledge-badge">0/8</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white bg-opacity-20 p-3 rounded-lg">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <div class="font-medium">First Win</div>
+                                            <div class="text-sm text-blue-100">Complete your first task</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-medal text-yellow-300" id="first-win-badge"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-6 mt-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                <span class="text-purple-700 font-bold">U</span>
+                            </div>
+                            <span class="font-bold">Umuzi Onboarding Platform</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-2">Designed for smooth integration of all contributors</p>
+                    </div>
+                    <div class="text-gray-400 text-sm">
+                        <p>© 2023 Umuzi. All rights reserved.</p>
+                        <p class="mt-1">Prototype for Internship Application Gig 4</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Data for different onboarding types
+        const onboardingData = {
+            fullTime: {
+                title: "Full-Time Staff Onboarding",
+                subtitle: "30-60-90 Day Immersion Journey",
+                phases: {
+                    phase1: { name: "Pre-boarding", desc: "Offer → Day 0: Welcome & Setup" },
+                    phase2: { name: "Foundations", desc: "Week 1: Culture & Tools" },
+                    phase3: { name: "Immersion", desc: "Weeks 2-3: Role Integration" },
+                    phase4: { name: "Contribution", desc: "Month 1+: Independent Work" }
+                },
+                tasks: [
+                    { id: 1, phase: 1, title: "Complete digital paperwork", completed: true, points: 10 },
+                    { id: 2, phase: 1, title: "Review welcome package & values", completed: true, points: 15 },
+                    { id: 3, phase: 1, title: "Schedule intro call with buddy", completed: false, points: 10 },
+                    { id: 4, phase: 2, title: "Attend company values session", completed: false, points: 20 },
+                    { id: 5, phase: 2, title: "Set up all required tools", completed: false, points: 15 },
+                    { id: 6, phase: 2, title: "Complete 'Meet 5 People' challenge", completed: false, points: 25 },
+                    { id: 7, phase: 3, title: "Shadow team member for a day", completed: false, points: 20 },
+                    { id: 8, phase: 3, title: "Complete role-specific training", completed: false, points: 30 },
+                    { id: 9, phase: 4, title: "Deliver first independent task", completed: false, points: 40 },
+                    { id: 10, phase: 4, title: "Set 30-60-90 day goals with manager", completed: false, points: 25 }
+                ],
+                resources: [
+                    { title: "Company Values & Culture Guide", icon: "fas fa-heart", type: "Culture" },
+                    { title: "Employee Handbook", icon: "fas fa-book", type: "Policy" },
+                    { title: "Benefits Overview", icon: "fas fa-award", type: "HR" },
+                    { title: "Team Directory & Org Chart", icon: "fas fa-sitemap", type: "People" },
+                    { title: "Project Management Guide", icon: "fas fa-tasks", type: "Process" },
+                    { title: "Career Development Framework", icon: "fas fa-chart-line", type: "Growth" }
+                ],
+                connections: [
+                    { name: "Sphesihle Ngwenya", role: "Buddy", email: "sphesihle@umuzi.org", avatarColor: "bg-blue-500" },
+                    { name: "Sarah Chen", role: "Line Manager", email: "sarah@umuzi.org", avatarColor: "bg-green-500" },
+                    { name: "David Okafor", role: "HR Partner", email: "david@umuzi.org", avatarColor: "bg-purple-500" },
+                    { name: "Tech Support", role: "IT Help Desk", email: "support@umuzi.org", avatarColor: "bg-gray-500" }
+                ]
+            },
+            contractor: {
+                title: "Contractor Onboarding",
+                subtitle: "Focused & Efficient Project Integration",
+                phases: {
+                    phase1: { name: "Pre-boarding", desc: "3-5 days before start" },
+                    phase2: { name: "Accelerated Foundations", desc: "Day 1: Project Kickoff" },
+                    phase3: { name: "Focused Integration", desc: "Week 1: Project Context" },
+                    phase4: { name: "Project Delivery", desc: "Ongoing: Milestones" }
+                },
+                tasks: [
+                    { id: 1, phase: 1, title: "Sign contract & NDA", completed: true, points: 10 },
+                    { id: 2, phase: 1, title: "Receive project brief", completed: true, points: 15 },
+                    { id: 3, phase: 2, title: "Project kickoff meeting", completed: false, points: 20 },
+                    { id: 4, phase: 2, title: "Access to essential tools only", completed: false, points: 10 },
+                    { id: 5, phase: 3, title: "Meet key project contacts", completed: false, points: 15 },
+                    { id: 6, phase: 3, title: "Review communication protocols", completed: false, points: 10 },
+                    { id: 7, phase: 4, title: "Deliver first milestone", completed: false, points: 30 },
+                    { id: 8, phase: 4, title: "Schedule weekly sync", completed: false, points: 10 }
+                ],
+                resources: [
+                    { title: "Project Brief & Scope", icon: "fas fa-briefcase", type: "Project" },
+                    { title: "Communication Guidelines", icon: "fas fa-comments", type: "Process" },
+                    { title: "Tool Access Guide", icon: "fas fa-key", type: "Technical" },
+                    { title: "Invoice & Payment Process", icon: "fas fa-file-invoice-dollar", type: "Financial" },
+                    { title: "Project Contacts", icon: "fas fa-address-book", type: "People" }
+                ],
+                connections: [
+                    { name: "Sphesihle Ngwenya", role: "Project Manager", email: "sphesihle@umuzi.org", avatarColor: "bg-blue-500" },
+                    { name: "Sarah Chen", role: "Technical Lead", email: "sarah@umuzi.org", avatarColor: "bg-green-500" },
+                    { name: "Finance Team", role: "Billing & Payments", email: "finance@umuzi.org", avatarColor: "bg-yellow-500" }
+                ]
+            }
+        };
+
+        // State management
+        let currentOnboardingType = null;
+        let totalPoints = 0;
+        let connectionCount = 0;
+        let knowledgeModulesCompleted = 0;
+        let firstWinAchieved = false;
+
+        // DOM Elements
+        const fullTimeCard = document.getElementById('full-time-card');
+        const contractorCard = document.getElementById('contractor-card');
+        const onboardingDashboard = document.getElementById('onboarding-dashboard');
+        const dashboardTitle = document.getElementById('dashboard-title');
+        const dashboardSubtitle = document.getElementById('dashboard-subtitle');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressBar = document.getElementById('progress-bar');
+        const completedTasks = document.getElementById('completed-tasks');
+        const tasksContainer = document.getElementById('tasks-container');
+        const resourcesContainer = document.getElementById('resources-container');
+        const connectionsContainer = document.getElementById('connections-container');
+        const chatContainer = document.getElementById('chat-container');
+        const chatInput = document.getElementById('chat-input');
+        const sendChatButton = document.getElementById('send-chat');
+        const currentPhaseBadge = document.getElementById('current-phase-badge');
+        const gamificationBadge = document.getElementById('gamification-badge');
+        const connectionBadge = document.getElementById('connection-badge');
+        const knowledgeBadge = document.getElementById('knowledge-badge');
+        const firstWinBadge = document.getElementById('first-win-badge');
+
+        // Set phase descriptions in the UI
+        function setPhaseDescriptions(type) {
+            const data = onboardingData[type];
+            document.getElementById('phase-1-desc').textContent = data.phases.phase1.desc;
+            document.getElementById('phase-2-desc').textContent = data.phases.phase2.desc;
+            document.getElementById('phase-3-desc').textContent = data.phases.phase3.desc;
+            document.getElementById('phase-4-desc').textContent = data.phases.phase4.desc;
+        }
+
+        // Render tasks based on type
+        function renderTasks(type) {
+            const tasks = onboardingData[type].tasks;
+            tasksContainer.innerHTML = '';
+            
+            let completedCount = 0;
+            let currentPhase = 1;
+            
+            // Group tasks by phase
+            const tasksByPhase = {1: [], 2: [], 3: [], 4: []};
+            
+            tasks.forEach(task => {
+                tasksByPhase[task.phase].push(task);
+                if (task.completed) completedCount++;
+                
+                // Determine current phase (first incomplete task's phase)
+                if (!task.completed && currentPhase === task.phase) {
+                    currentPhase = task.phase;
+                }
+            });
+            
+            // Update progress
+            const progress = Math.round((completedCount / tasks.length) * 100);
+            progressPercent.textContent = `${progress}%`;
+            progressBar.style.width = `${progress}%`;
+            completedTasks.textContent = `${completedCount}/${tasks.length} tasks`;
+            
+            // Update current phase badge
+            currentPhaseBadge.textContent = `Phase ${currentPhase}`;
+            
+            // Update gamification points
+            totalPoints = tasks.filter(t => t.completed).reduce((sum, task) => sum + task.points, 0);
+            gamificationBadge.textContent = `${totalPoints} pts`;
+            
+            // Update gamification badges
+            updateGamificationBadges();
+            
+            // Highlight active phase
+            document.querySelectorAll('.phase').forEach((phaseEl, index) => {
+                if (index + 1 === currentPhase) {
+                    phaseEl.classList.add('phase-active', 'border-blue-300');
+                } else {
+                    phaseEl.classList.remove('phase-active', 'border-blue-300');
+                }
+            });
+            
+            // Render tasks for each phase
+            for (let phase = 1; phase <= 4; phase++) {
+                const phaseTasks = tasksByPhase[phase];
+                if (phaseTasks.length === 0) continue;
+                
+                const phaseSection = document.createElement('div');
+                phaseSection.className = 'mb-6';
+                
+                const phaseTitle = document.createElement('h4');
+                phaseTitle.className = 'font-bold text-gray-700 mb-3 flex items-center';
+                phaseTitle.innerHTML = `
+                    <span class="w-6 h-6 ${phase === currentPhase ? 'bg-blue-600' : 'bg-gray-300'} text-white rounded-full flex items-center justify-center mr-2 text-sm">${phase}</span>
+                    ${onboardingData[type].phases[`phase${phase}`].name}
+                `;
+                
+                phaseSection.appendChild(phaseTitle);
+                
+                phaseTasks.forEach(task => {
+                    const taskElement = document.createElement('div');
+                    taskElement.className = `flex items-center justify-between p-3 mb-2 border rounded-lg ${task.completed ? 'task-complete border-green-200' : 'border-gray-200'}`;
+                    taskElement.innerHTML = `
+                        <div class="flex items-center">
+                            <button class="task-toggle w-6 h-6 rounded-full border mr-3 flex items-center justify-center ${task.completed ? 'bg-green-500 text-white border-green-500' : 'border-gray-300 text-gray-300'}" data-id="${task.id}">
+                                <i class="fas fa-check text-xs"></i>
+                            </button>
+                            <div>
+                                <div class="font-medium text-gray-800">${task.title}</div>
+                                <div class="text-xs text-gray-500">${task.points} points</div>
+                            </div>
+                        </div>
+                        <div>
+                            ${task.completed ? 
+                                '<span class="badge bg-green-100 text-green-800">Completed</span>' : 
+                                '<span class="text-sm text-gray-500">Pending</span>'}
+                        </div>
+                    `;
+                    
+                    phaseSection.appendChild(taskElement);
+                });
+                
+                tasksContainer.appendChild(phaseSection);
+            }
+            
+            // Add event listeners to task toggles
+            document.querySelectorAll('.task-toggle').forEach(button => {
+                button.addEventListener('click', function() {
+                    const taskId = parseInt(this.getAttribute('data-id'));
+                    toggleTaskCompletion(type, taskId);
+                });
+            });
+        }
+
+        // Render resources based on type
+        function renderResources(type) {
+            const resources = onboardingData[type].resources;
+            resourcesContainer.innerHTML = '';
+            
+            resources.forEach(resource => {
+                const resourceElement = document.createElement('div');
+                resourceElement.className = 'flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer';
+                resourceElement.innerHTML = `
+                    <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mr-3">
+                        <i class="${resource.icon}"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="font-medium text-gray-800">${resource.title}</div>
+                        <div class="text-xs text-gray-500">${resource.type}</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                `;
+                resourcesContainer.appendChild(resourceElement);
+            });
+        }
+
+        // Render connections based on type
+        function renderConnections(type) {
+            const connections = onboardingData[type].connections;
+            connectionsContainer.innerHTML = '';
+            
+            connections.forEach(connection => {
+                const connectionElement = document.createElement('div');
+                connectionElement.className = 'flex items-center p-3 border border-gray-200 rounded-lg';
+                connectionElement.innerHTML = `
+                    <div class="w-10 h-10 ${connection.avatarColor} rounded-full flex items-center justify-center text-white font-bold mr-3">
+                        ${connection.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div class="flex-grow">
+                        <div class="font-medium text-gray-800">${connection.name}</div>
+                        <div class="text-sm text-gray-600">${connection.role}</div>
+                        <div class="text-xs text-gray-500">${connection.email}</div>
+                    </div>
+                    <button class="contact-btn w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200" data-email="${connection.email}">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </button>
+                `;
+                connectionsContainer.appendChild(connectionElement);
+            });
+            
+            // Add event listeners to contact buttons
+            document.querySelectorAll('.contact-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const email = this.getAttribute('data-email');
+                    alert(`This would open your email client to send a message to ${email}`);
+                    
+                    // Update connection count for gamification
+                    if (currentOnboardingType === 'fullTime') {
+                        connectionCount = Math.min(connectionCount + 1, 5);
+                        connectionBadge.textContent = `${connectionCount}/5`;
+                        updateGamificationBadges();
+                    }
+                });
+            });
+        }
+
+        // Toggle task completion
+        function toggleTaskCompletion(type, taskId) {
+            const taskIndex = onboardingData[type].tasks.findIndex(t => t.id === taskId);
+            if (taskIndex === -1) return;
+            
+            const task = onboardingData[type].tasks[taskIndex];
+            task.completed = !task.completed;
+            
+            // Update knowledge modules count for gamification
+            if (task.title.includes('training') || task.title.includes('module')) {
+                knowledgeModulesCompleted += task.completed ? 1 : -1;
+            }
+            
+            // Check for first win
+            if (task.completed && !firstWinAchieved) {
+                firstWinAchieved = true;
+                firstWinBadge.classList.remove('fa-medal');
+                firstWinBadge.classList.add('fa-trophy');
+            }
+            
+            renderTasks(type);
+        }
+
+        // Update gamification badges
+        function updateGamificationBadges() {
+            // Connection badge
+            if (currentOnboardingType === 'fullTime') {
+                connectionBadge.textContent = `${connectionCount}/5`;
+            }
+            
+            // Knowledge badge
+            const totalModules = currentOnboardingType === 'fullTime' ? 8 : 3;
+            knowledgeBadge.textContent = `${knowledgeModulesCompleted}/${totalModules}`;
+            
+            // First win badge
+            if (firstWinAchieved) {
+                firstWinBadge.classList.remove('fa-medal');
+                firstWinBadge.classList.add('fa-trophy');
+            }
+        }
+
+        // Initialize onboarding type selection
+        function initOnboardingType(type) {
+            currentOnboardingType = type;
+            
+            // Update UI based on type
+            const data = onboardingData[type];
+            dashboardTitle.textContent = data.title;
+            dashboardSubtitle.textContent = data.subtitle;
+            
+            // Reset gamification for demo
+            if (type === 'fullTime') {
+                connectionCount = 1; // Starting with buddy connection
+                knowledgeModulesCompleted = 2; // Already completed some modules
+            } else {
+                connectionCount = 0;
+                knowledgeModulesCompleted = 1;
+            }
+            firstWinAchieved = false;
+            firstWinBadge.classList.remove('fa-trophy');
+            firstWinBadge.classList.add('fa-medal');
+            
+            // Set phase descriptions
+            setPhaseDescriptions(type);
+            
+            // Render content
+            renderTasks(type);
+            renderResources(type);
+            renderConnections(type);
+            
+            // Show dashboard
+            onboardingDashboard.classList.remove('hidden');
+            
+            // Scroll to dashboard
+            onboardingDashboard.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // AI Chatbot functionality
+        const aiResponses = {
+            greeting: ["Hello! How can I help with your onboarding today?", "Hi there! What questions do you have about Umuzi?", "Welcome! I'm here to help you get settled in."],
+            culture: ["Umuzi's culture is built on collaboration, learning, and impact. We value diversity and creative problem-solving.", "Our core values are: 1) People First, 2) Embrace Learning, 3) Deliver Impact, 4) Collaborate Openly."],
+            process: ["The onboarding process is designed to help you settle in smoothly. Full-time staff follow a 30-60-90 day journey, while contractors have a streamlined process.", "Your tasks are prioritized based on your role. Complete them in order or jump to what's most relevant to you."],
+            tools: ["We use Slack for communication, Notion for documentation, and GitHub for code collaboration. You'll get access to these during setup.", "All tools are documented in the Resources section. Contact IT support if you have access issues."],
+            benefits: ["Full-time staff enjoy health insurance, learning stipends, flexible work hours, and quarterly team retreats.", "Contractors receive competitive rates, clear project scope, and timely payments through our finance system."],
+            default: ["I'm not sure about that. Try asking about our culture, processes, tools, or benefits. Or contact your buddy/manager for specific questions."]
+        };
+
+        function getAIResponse(message) {
+            const lowerMsg = message.toLowerCase();
+            
+            if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
+                return aiResponses.greeting[Math.floor(Math.random() * aiResponses.greeting.length)];
+            } else if (lowerMsg.includes('culture') || lowerMsg.includes('value')) {
+                return aiResponses.culture[Math.floor(Math.random() * aiResponses.culture.length)];
+            } else if (lowerMsg.includes('process') || lowerMsg.includes('onboard')) {
+                return aiResponses.process[Math.floor(Math.random() * aiResponses.process.length)];
+            } else if (lowerMsg.includes('tool') || lowerMsg.includes('software') || lowerMsg.includes('system')) {
+                return aiResponses.tools[Math.floor(Math.random() * aiResponses.tools.length)];
+            } else if (lowerMsg.includes('benefit') || lowerMsg.includes('perk') || lowerMsg.includes('insurance')) {
+                return aiResponses.benefits[Math.floor(Math.random() * aiResponses.benefits.length)];
+            } else {
+                return aiResponses.default[0];
+            }
+        }
+
+        function addChatMessage(message, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.className = isUser ? 'user-chat-bubble bg-blue-100 p-3 ml-auto mb-3' : 'ai-chat-bubble bg-white p-3 mb-3 shadow-sm';
+            messageElement.innerHTML = `<p class="text-gray-800">${message}</p>`;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Event Listeners
+        fullTimeCard.addEventListener('click', () => {
+            fullTimeCard.classList.add('ring-2', 'ring-blue-500');
+            contractorCard.classList.remove('ring-2', 'ring-green-500');
+            initOnboardingType('fullTime');
+        });
+
+        contractorCard.addEventListener('click', () => {
+            contractorCard.classList.add('ring-2', 'ring-green-500');
+            fullTimeCard.classList.remove('ring-2', 'ring-blue-500');
+            initOnboardingType('contractor');
+        });
+
+        sendChatButton.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addChatMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate AI thinking
+                setTimeout(() => {
+                    const response = getAIResponse(message);
+                    addChatMessage(response);
+                }, 500);
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatButton.click();
+            }
+        });
+
+        // Initialize with full-time as default
+        fullTimeCard.click();
+    </script>
+</body>
+</html>
